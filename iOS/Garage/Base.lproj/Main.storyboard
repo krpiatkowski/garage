@@ -28,14 +28,32 @@
                                     <constraint firstAttribute="width" constant="200" id="bvi-wz-3m8"/>
                                 </constraints>
                                 <state key="normal" title="Toggle"/>
+                                <connections>
+                                    <action selector="didTapToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rz4-ft-TgW"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdI-3d-a9Z">
+                                <rect key="frame" x="87" y="587" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ODE-DH-6Lf"/>
+                                    <constraint firstAttribute="width" constant="200" id="XrQ-gy-cuk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="HxE-eV-1CE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="KTM-8L-KQX"/>
                             <constraint firstItem="HxE-eV-1CE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="beh-YU-1Nb"/>
+                            <constraint firstItem="tdI-3d-a9Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eYO-GN-yc7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tdI-3d-a9Z" secondAttribute="bottom" constant="50" id="zhY-mu-AmW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="statusLabel" destination="tdI-3d-a9Z" id="H9y-1J-Nzx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
