@@ -1,0 +1,20 @@
+{
+  "name": "alexa-garage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "claudia-bot-builder": "^4.2.0",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "claudia": "^5.1.0"
+  },
+  "scripts": {
+    "create": "claudia --profile claudia create --configure-alexa-skill --region eu-west-1 --api-module bot --cache-api-config apiConfig",
+    "update": "claudia --profile claudia update --cache-api-config apiConfig",
+    "test": "node test.js"
+  }
+}
