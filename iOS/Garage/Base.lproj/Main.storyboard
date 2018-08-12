@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,6 +32,19 @@
                                     <action selector="didTapToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rz4-ft-TgW"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HII-Vv-hA9">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkG-To-HWd" userLabel="Error label">
+                                <rect key="frame" x="87.5" y="353" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="KZs-Gy-zx2"/>
+                                    <constraint firstAttribute="height" constant="30" id="Y3H-GG-sgA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unknown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdI-3d-a9Z">
                                 <rect key="frame" x="87" y="587" width="200" height="30"/>
                                 <constraints>
@@ -45,13 +58,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="HII-Vv-hA9" firstAttribute="centerX" secondItem="HxE-eV-1CE" secondAttribute="centerX" id="F56-bC-8bC"/>
                             <constraint firstItem="HxE-eV-1CE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="KTM-8L-KQX"/>
                             <constraint firstItem="HxE-eV-1CE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="beh-YU-1Nb"/>
                             <constraint firstItem="tdI-3d-a9Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eYO-GN-yc7"/>
+                            <constraint firstItem="HII-Vv-hA9" firstAttribute="centerY" secondItem="HxE-eV-1CE" secondAttribute="centerY" id="fVS-iF-cxC"/>
+                            <constraint firstItem="AkG-To-HWd" firstAttribute="bottom" secondItem="HxE-eV-1CE" secondAttribute="bottom" constant="20" id="kUM-8C-516"/>
+                            <constraint firstItem="AkG-To-HWd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mcF-pX-zaa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tdI-3d-a9Z" secondAttribute="bottom" constant="50" id="zhY-mu-AmW"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityView" destination="HII-Vv-hA9" id="Sgi-wB-glr"/>
+                        <outlet property="button" destination="HxE-eV-1CE" id="WeN-cZ-xWA"/>
+                        <outlet property="errorLabel" destination="AkG-To-HWd" id="532-Qd-L06"/>
                         <outlet property="statusLabel" destination="tdI-3d-a9Z" id="H9y-1J-Nzx"/>
                     </connections>
                 </viewController>

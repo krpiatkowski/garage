@@ -4,8 +4,10 @@
 
 #include "config.h"
 
-const char* ssid = WIFI_SSID;
-const char* password = WIFI_PASSWORD;
+const char* wifi_ssid = WIFI_SSID;
+const char* wifi_password = WIFI_PASSWORD;
+const char* user = USER;
+const char* password = PASSWORD;
 const char* isOpenWarningURL = IS_OPEN_WARNING_URL;
 
 #define RELAY_PIN 13
@@ -27,17 +29,16 @@ void setup() {
 
 void loop() {
   server.handleClient();
-  //handleIsOpen();
   delay(500);
 }
 
 void setupWifi() {
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
-    WiFi.begin(ssid, password);
+    WiFi.begin(wifi_ssid, wifi_password);
   }
   Serial.println("");
-  Serial.printf("Connected to %s\n", ssid);
+  Serial.printf("Connected to %s\n", wifi_ssid);
   Serial.println("");
 }
 
@@ -54,38 +55,25 @@ void setupServer() {
   Serial.print(WiFi.localIP());
 }
 
-
 void handleIsClosed() {
+  if (!server.authenticate(user, password)) {
+      return server.requestAuthentication();
+  }
   String response = "{\"isClosed\":";
   response += isClosed() ? "true" : "false";
   response += "}";
+  Serial.printf("%i", analogRead(A0));
   server.send(200, "json/application", response);
 }
 
 void handleToggle() {
+  if (!server.authenticate(user, password)) {
+      return server.requestAuthentication();
+  }
   server.send(200, "json/application", "{\"response\": true}");
   digitalWrite(RELAY_PIN, HIGH);
   delay(RELAY_TOGGLE_TIME);
   digitalWrite(RELAY_PIN, LOW);
-}
-
-bool didSendIsOpen = false;
-void handleIsOpen(){
-  if(!isClosed() && !didSendIsOpen){
-    http.begin(isOpenWarningURL);
-    int httpCode = http.GET();
-    if(httpCode > 0) {
-        if(httpCode == HTTP_CODE_OK) {
-          Serial.println("Did send isOpen");
-          didSendIsOpen = true;
-        }
-    } else {
-        Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
-    }
-    http.end();
-  } else {
-    didSendIsOpen = false;
-  }
 }
 
 bool isClosed() {

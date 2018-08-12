@@ -1,7 +1,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var button : UIButton!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
+
     var statusTimer: Timer?
 
     override func viewDidLoad() {
@@ -24,9 +28,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func didTapToggle(_ sender: Any) {
+        self.button.isHidden = true
+        activityView.isHidden = false
+        errorLabel.text = ""
         Request.get("toggle", success: { status in
+            DispatchQueue.main.async {
+                self.button.isHidden = false
+                self.activityView.isHidden = true
+            }
             print(status)
         }) { error in
+            DispatchQueue.main.async {
+                self.button.isHidden = false
+                self.activityView.isHidden = true
+                self.errorLabel.text = "Failed to toggle!"
+            }
             print(error)
         }
     }

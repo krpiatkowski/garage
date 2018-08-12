@@ -55,6 +55,5 @@ dkms.conf
 .clang_complete
 .gcc-flags.json
 
-src/config.h
 .travis.yml
 .DS_Store

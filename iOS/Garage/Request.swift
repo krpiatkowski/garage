@@ -9,15 +9,18 @@
 import Foundation
 
 class Request {
+    private static let base64LoginString = "\(API_USER):\(API_PASSWORD)".data(using: String.Encoding.utf8)!.base64EncodedString()
     static func get(_ path : String, success: @escaping (NSDictionary) -> Void, error: @escaping (Error) -> Void) {
         let request = createRequest(path, method: "GET")
         handleRequest(request: request, success: success, error: error)
     }
 
     private static func createRequest(_ path:String, method:String) -> URLRequest {
-        let url = URL(string: "http://192.168.1.30/\(path)")
+        let url = URL(string: "\(API_URL)/\(path)")
         var request = URLRequest(url: url!)
         request.httpMethod = method
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+
         return request
     }
 
